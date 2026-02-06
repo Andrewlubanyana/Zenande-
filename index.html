@@ -4,108 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Zenande ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --secondary-pink: #ff85a1;
+            --dark-pink: #c9184a;
+            --bg-color: #fff0f3;
+        }
+
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            background-color: #fff0f3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
+        }
+
+        /* Floating hearts background animation */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Main Card */
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
             text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid white;
         }
 
         h1 {
-            color: #ff4d6d;
+            font-family: 'Dancing Script', cursive;
+            color: var(--dark-pink);
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
 
-        .buttons {
+        .button-group {
             display: flex;
+            justify-content: center;
             gap: 20px;
-            align-items: center;
+            margin-top: 2rem;
+            height: 60px; /* Space for buttons */
+            position: relative;
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
             border: none;
-            border-radius: 50px;
+            border-radius: 15px;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         #yesBtn {
-            background-color: #ff4d6d;
+            background-color: var(--primary-pink);
             color: white;
+            z-index: 2;
+        }
+
+        #yesBtn:hover {
+            background-color: var(--dark-pink);
+            transform: translateY(-3px);
         }
 
         #noBtn {
             background-color: #590d22;
-            color: white;
-            position: absolute;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #success-message img {
-            width: 300px;
-            border-radius: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="quiz-container">
-        <h1 id="question">Zenande, will you be my Valentine? 🌹</h1>
-        <div class="buttons">
-            <button id="yesBtn">YES</button>
-            <button id="noBtn">NO</button>
-        </div>
-    </div>
-
-    <div id="success-message" class="hidden">
-        <h1>Yay! See you on the 14th! ❤️</h1>
-        <p>You made the right choice, Zenande.</p>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Happy Dance">
-    </div>
-
-    <script>
-        const noBtn = document.getElementById('noBtn');
-        const yesBtn = document.getElementById('yesBtn');
-        const quizContainer = document.getElementById('quiz-container');
-        const successMessage = document.getElementById('success-message');
-        const question = document.getElementById('question');
-
-        let yesSize = 1.2;
-
-        // The "No" button runs away
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
-
-            // Make the Yes button bigger every time she tries to hit No
-            yesSize += 0.2;
-            yesBtn.style.transform = `scale(${yesSize})`;
-        });
-
-        // When she finally gives up and clicks Yes
-        yesBtn.addEventListener('click', () => {
-            quizContainer.classList.add('hidden');
-            noBtn.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-            
-            // Add some confetti or heart emoji logic here if you want!
-        });
-    </script>
-</body>
-</html>
